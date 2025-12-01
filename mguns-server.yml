@@ -1,16 +1,4 @@
 services:
-  mguns-steamcmd:
-    image: gameservermanagers/steamcmd:latest
-    container_name: mguns-steamcmd
-    environment:
-      STEAMID: "username"
-      STEAMPASS: "password"
-    volumes:
-      - /your-dir-here/mguns:/home/steam/mguns:z
-      - /your-dir-here/steam:/home/steam/.local/share/Steam:z
-    network_mode: host
-    command: steamcmd +force_install_dir /home/steam/mguns +login $STEAMID $STEAMPASS +app_update 1877600 +quit
-
   mguns1:
     image: localhost/mguns-server
     container_name: mguns-casual
@@ -22,7 +10,7 @@ services:
     #  - '27500:27500'
     #  - '26000:26000'
     workdir: /home/steam/mguns
-    command: ./midnightguns  -server -protocol MIDNIGHT +sv_port 27501 +map harlem +set hostname "[ NA-EAST ] Portly Podman Playtime" +sv_public 1 +exec mguns1.cfg
+    command: ./midnightguns  -server -protocol MIDNIGHT +sv_port 27501 +map harlem +set hostname "Hostname" +sv_public 1 +exec mguns1.cfg
     network_mode: host
 
   mguns2:
@@ -36,5 +24,5 @@ services:
     #  - '27500:27500'
     #  - '26000:26000'
     workdir: /home/steam/mguns
-    command: ./midnightguns  -server -protocol MIDNIGHT +sv_port 27502 +map harlem +set hostname "[ NA-EAST ] Portly Podman Pickups" +sv_public 1 +exec mguns2.cfg
+    command: ./midnightguns  -server -protocol MIDNIGHT +sv_port 27502 +map harlem +set hostname "Hostname 2" +sv_public 1 +exec mguns2.cfg
     network_mode: host

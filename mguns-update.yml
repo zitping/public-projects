@@ -1,0 +1,12 @@
+services:
+  mguns-steamcmd:
+    image: gameservermanagers/steamcmd:latest
+    container_name: mguns-steamcmd
+    environment:
+      STEAMID: "username"
+      STEAMPASS: "password"
+    volumes:
+      - /your-dir-here/mguns:/home/steam/mguns:z
+      - /your-dir-here/steam:/home/steam/.local/share/Steam:z
+    network_mode: host
+    command: steamcmd +force_install_dir /home/steam/mguns +login $STEAMID $STEAMPASS +app_update 1877600 +quit
